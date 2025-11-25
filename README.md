@@ -1,8 +1,13 @@
 # Media Player para Feira de Profissões ✨
 
 <!-- Sugestão: Adicione aqui uma imagem ou GIF do media player em funcionamento. -->
-![Demonstração do Media Player](docs/player-demo.gif) 
+![Interface do Player](docs/home_web.png)
 
+<br>
+
+<p align="center">
+  <img src="docs/player-demo.gif" alt="Demonstração do Media Player" width="600"/>
+</p>
 ## ✨ 1. Visão Geral
 
 Este projeto é um media player com controle remoto via celular, ideal para a recepção de eventos como feiras de profissões. Ele reproduz uma lista de músicas e um slideshow de imagens em uma tela principal (como uma Smart TV), enquanto o controle total da reprodução é feito por uma interface web acessível pelo navegador de qualquer celular na mesma rede Wi-Fi.
@@ -92,8 +97,8 @@ A arquitetura é baseada em Node.js, garantindo comunicação em tempo real entr
     Basta configurar o dispositivo de áudio desejado como o padrão no sistema operacional antes de abrir o navegador na tela principal.
 
 ## Documentação Destalhada:
- - ### [1. Apresentação do Projeto](docs/Apresentação.md)
-- ### [2. Detatlhes Técincos](docs/Documentação.md)
+ - ### [1. Apresentação do Projeto](docs/Apresentacao.md)
+- ### [2. Detatlhes Técincos](docs/Desenvolvimento.md)
 - ### [3. Solução de Problemas (Troubleshooting)](docs/Troubleshooting.md)
 
 
