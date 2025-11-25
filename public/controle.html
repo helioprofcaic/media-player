@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Remoto</title>
+    <link rel="stylesheet" href="/css/controle.css">
+</head>
+<body>
+    <h1>Controle do Media Player</h1>
+
+    <div id="now-playing-container">
+        <p>Tocando agora:</p>
+        <h2 id="song-title">Nenhuma música tocando</h2>
+    </div>
+
+    <div id="volume-container">
+        <label for="volume-slider">Volume</label>
+        <!-- O valor inicial é 100 (máximo). O evento 'oninput' é disparado continuamente enquanto o slider é movido -->
+        <input type="range" id="volume-slider" min="0" max="100" value="100" oninput="sendVolume(this.value)">
+    </div>
+
+    <div class="server-action-container">
+        <button class="server-action-btn" onclick="launchDownloader()">Abrir Downloader de Músicas</button>
+    </div>
+    
+    <div class="controls-container">
+        <button class="prev-btn" onclick="sendAction('previous')">Anterior</button>
+        <button class="play-btn" onclick="sendAction('play')">Play</button>
+        <button class="pause-btn" onclick="sendAction('pause')">Pause</button>
+        <button class="next-btn" onclick="sendAction('next')">Próxima</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        function sendAction(action) {
+            socket.emit('control-action', { action });
+        }
+
+        // Envia o valor do volume para o servidor
+        function sendVolume(value) {
+            socket.emit('volume-change', { volume: value });
+        }
+
+        // Envia a URL da playlist para o servidor
+        function launchDownloader() {
+            socket.emit('launch-downloader');
+        }
+
+        // Ouve por atualizações do nome da música
+        socket.on('now-playing-update', (data) => {
+            const songTitleEl = document.getElementById('song-title');
+            // Remove a extensão .mp3 e exibe o nome
+            const songName = data.song.replace('.mp3', '');
+            songTitleEl.textContent = songName || 'Nenhuma música tocando';
+        });
+
+        // Ouve por atualizações da imagem de fundo
+        socket.on('background-image-update', (data) => {
+            const imageUrl = `/imagens/${data.image}`;
+            document.body.style.backgroundImage = `url('${imageUrl}')`;
+        });
+    </script>
+</body>
+</html>

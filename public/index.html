@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Player - Display</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <img id="slideshow" src="" alt="Slideshow">
+
+    <div id="main-now-playing">
+        <span id="main-song-title"></span>
+    </div>
+
+    <button id="toggle-controls-btn">Mostrar Controles</button>
+
+    <div id="player-container">
+        <p>Controle de Áudio</p>
+        <audio id="player" controls></audio>
+        <button id="fullscreen-btn">Tela Cheia</button>
+
+        <div class="control-group">
+            <label>Intervalo do Slide</label>
+            <div class="stepper-control">
+                <button id="interval-decrease" class="stepper-btn">-</button>
+                <span id="interval-value">10s</span>
+                <button id="interval-increase" class="stepper-btn">+</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="image-fit">Ajuste da Imagem</label>
+            <select id="image-fit">
+                <option value="cover">Preencher (Cortar)</option>
+                <option value="contain">Ajustar (Com Barras)</option>
+                <option value="fill">Esticar (Distortcer)</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="qrcode-container">
+        <p>Aponte a câmera aqui para controlar</p>
+        <div id="qrcode"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- Carrega o arquivo principal com toda a lógica da página -->
+    <script src="/js/main.js" defer></script>
+</body>
+</html>
