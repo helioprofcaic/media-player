@@ -108,5 +108,7 @@ A arquitetura é baseada em Node.js, garantindo comunicação em tempo real entr
 Helio Lima
 
 Professor dos cursos Técnicos em Desenvolvimento de Sistemas e Técnico em Desenvolvimento de Jogos Digitais.
+Projeto apresentado na feira das Profissiões CETI João Mendes Olímpio de Melo, Teresina - PI
+Turma 1ª Série de Desenvolvimento de Sistemas 2025.
 
 **Contato:** raimundo.helio@professor.edu.pi.gov.br
