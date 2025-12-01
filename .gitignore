@@ -7,5 +7,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # Pastas de mídia
-musicas/
-imagens/
+# Ignora o conteúdo das pastas de mídia, mas mantém os diretórios.
+# Para que o Git rastreie as pastas vazias, crie um arquivo chamado .gitkeep dentro de cada uma.
+musicas/*
+!musicas/.gitkeep
+imagens/*
+!imagens/.gitkeep

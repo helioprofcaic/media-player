@@ -46,6 +46,9 @@ io.on('connection', (socket) => {
     // Envia as listas de mídia para os clientes
     socket.emit('update-lists', { playlist, imageList });
 
+    // Envia o IP e a Porta do servidor para o cliente que acabou de conectar
+    socket.emit('server-info', { ip: localIp, port: PORT });
+
     // Ouve por comandos do controle remoto e os retransmite para todos
     socket.on('control-action', (data) => {
         io.emit('playback-control', data);
@@ -109,7 +112,7 @@ function getLocalIpAddress() {
             // Pula endereços que não são IPv4 ou são internos (ex: 127.0.0.1)
             if (iface.family === 'IPv4' && !iface.internal) {
                 // Prioridade 1: Encontrar o IP da rede Wi-Fi local (192.168.0.x)
-                if (iface.address.startsWith('192.168.0.')) {
+                if (iface.address.startsWith('192.168.6.')) {
                     localIp = iface.address;
                     break; // Encontrou o melhor IP, pode parar de procurar nesta interface
                 }

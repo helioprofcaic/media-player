@@ -113,6 +113,20 @@ socket.on('volume-update', (data) => {
     player.volume = data.volume / 100;
 });
 
+// Ouve as informações do servidor para gerar o QR Code corretamente
+socket.on('server-info', (data) => {
+    // Gera o QR Code para o controle remoto assim que receber o IP do servidor.
+    const controlUrl = `http://${data.ip}:${data.port}/controle.html`;
+    
+    // Limpa qualquer QR Code antigo antes de gerar um novo
+    document.getElementById("qrcode").innerHTML = '';
+
+    new QRCode(document.getElementById("qrcode"), {
+        text: controlUrl,
+        width: 128,
+        height: 128,
+    });
+});
 
 // =================================================================
 // LÓGICA DO SLIDESHOW E PLAYER
@@ -157,16 +171,6 @@ player.addEventListener('ended', () => {
 // =================================================================
 // FUNCIONALIDADES DA INTERFACE (UI)
 // =================================================================
-
-// Gera o QR Code para o controle remoto quando a página carrega.
-window.addEventListener('load', () => {
-    const controlUrl = `http://${window.location.host}/controle.html`;
-    new QRCode(document.getElementById("qrcode"), {
-        text: controlUrl,
-        width: 128,
-        height: 128,
-    });
-});
 
 // Adiciona a lógica para o botão que mostra e oculta os painéis de controle.
 toggleBtn.addEventListener('click', () => {
